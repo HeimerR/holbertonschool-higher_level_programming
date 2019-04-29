@@ -10,8 +10,8 @@ int check_cycle(listint_t *list)
 
 	if (list)
 	{
-		pslow = list->next;
-		pfast = list->next->next;
+		pslow = list;
+		pfast = list->next;
 		while (pslow && pfast && pfast->next)
 		{
 			if (pslow == pfast)
