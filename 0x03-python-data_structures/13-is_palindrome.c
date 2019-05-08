@@ -18,7 +18,7 @@ int is_palindrome(listint_t **head)
 		len2++;
 	}
 	h = *head;
-	while (len2 > 0)
+	while (len2 > 1)
 	{
 		h2 = h;
 		len = len2;
