@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def best_score(a_dictionary):
     if a_dictionary is not None:
-        valist = list(a_dictionary.values())
+        valist = list(sorted(a_dictionary.values()))
         num = valist[0]
         for k, v in sorted(a_dictionary.items()):
             if v > num:
