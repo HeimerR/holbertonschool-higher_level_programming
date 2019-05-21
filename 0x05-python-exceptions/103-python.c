@@ -1,7 +1,6 @@
 #include <Python.h>
 #include <stdio.h>
 #include <strings.h>
-#include <float.h>
 /**
  * My_PyBytes - prints some basic info about Python lists.
  * @op: pointer to a object
