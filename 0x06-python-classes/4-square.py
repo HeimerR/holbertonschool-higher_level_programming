@@ -8,7 +8,7 @@ class Square:
         """ init square
 
         Args:
-            value: size of the square.
+            value (int): size of the square.
         """
         self.size = size
 
@@ -26,7 +26,7 @@ class Square:
         """Sets value into size, must be int.
 
         Args:
-            value: size of the square.
+            value (int): size of the square.
         """
         if type(value) is not int:
             raise TypeError('size must be an integer')
