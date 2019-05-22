@@ -87,14 +87,16 @@ class Square:
 
     def __str__(self):
         str_square = []
-        for k in range(self.__position[1]):
-            str_square.append('\n')
-        for i in range(self.__size):
-            if (self.__position[0] != 0):
-                for l in range(self.__position[0]):
-                    str_square.append(' ')
-            for j in range(self.__size):
-                str_square.append('#')
-            if (i < self.__size - 1):
+
+        if self.__size != 0:
+            for k in range(self.__position[1]):
                 str_square.append('\n')
+            for i in range(self.__size):
+                if (self.__position[0] != 0):
+                    for l in range(self.__position[0]):
+                        str_square.append(' ')
+                for j in range(self.__size):
+                    str_square.append('#')
+                if (i < self.__size - 1):
+                    str_square.append('\n')
         return ''.join(str_square)
