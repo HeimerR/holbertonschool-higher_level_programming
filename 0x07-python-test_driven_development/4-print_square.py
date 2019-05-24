@@ -5,7 +5,7 @@
 
 def print_square(size):
     """ prints a square with the character #
-    
+
     Args:
         size (int): size of the sqaure
     """

@@ -1,0 +1,155 @@
+This test file tests the module 100-matrix_mul.py 
+--------------------------------------------
+
+case 0:
+    importing succesfully
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+>>>
+
+---------------------------------------------
+
+case 1:
+    2x2 matrices
+
+>>> print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+[[7, 10], [15, 22]]
+>>>
+
+---------------------------------------------
+
+case 2:
+    first argument is not a list
+
+>>> print(matrix_mul(([1, 2], [3, 4]), [[1, 2], [3, 4]]))
+Traceback (most recent call last):
+TypeError: m_a must be a list
+>>>
+
+---------------------------------------------
+
+case 3:
+    second argument is not a list
+
+>>> print(matrix_mul([[1, 2], [3, 4]], "list"))
+Traceback (most recent call last):
+TypeError: m_b must be a list
+>>>
+
+---------------------------------------------
+
+case 4:
+    first argument is not a list of lists
+
+>>> print(matrix_mul([[1, 2], {"h":1}], [[1, 2], [3, 4]]))
+Traceback (most recent call last):
+TypeError: m_a must be a list of lists
+>>>
+
+---------------------------------------------
+
+case 5:
+    second argument is not a list of lists
+
+>>> print(matrix_mul([[1, 2], [3, 4]], [[1, 2], 9]))
+Traceback (most recent call last):
+TypeError: m_b must be a list of lists
+>>>
+
+---------------------------------------------
+
+case 6:
+    first argument is empty
+
+>>> print(matrix_mul([], [[1, 2], [3, 4]]))
+Traceback (most recent call last):
+ValueError: m_a can't be empty
+>>>
+
+---------------------------------------------
+
+case 7:
+    first argument is a empty list of lists
+
+>>> print(matrix_mul([[]], [[1, 2], [3, 4]]))
+Traceback (most recent call last):
+ValueError: m_a can't be empty
+>>>
+
+---------------------------------------------
+
+case 8:
+    second argument is empty
+
+>>> print(matrix_mul([[1, 2], [3, 4]], []))
+Traceback (most recent call last):
+ValueError: m_b can't be empty
+>>>
+
+---------------------------------------------
+
+case 9:
+    second argument is a empty list of lists
+
+>>> print(matrix_mul([[1, 2], [3, 4]], [[]]))
+Traceback (most recent call last):
+ValueError: m_b can't be empty
+>>>
+
+---------------------------------------------
+
+case 10:
+    first argument no integer or float
+
+>>> print(matrix_mul([[1, "hola"], [3, 4]], [[1, 2], [3, 4]]))
+Traceback (most recent call last):
+TypeError: m_a should contain only integers or floats
+>>>
+
+---------------------------------------------
+
+case 11:
+    second argument no integer or float
+
+>>> print(matrix_mul([[1, 2], [3, 4]], [[[1], 2], [3, 4]]))
+Traceback (most recent call last):
+TypeError: m_b should contain only integers or floats
+>>>
+
+---------------------------------------------
+
+case 12:
+    first argument no rectangular matrix
+
+>>> print(matrix_mul([[1, 2, 3], [3, 4]], [[1, 2], [3, 4]]))
+Traceback (most recent call last):
+TypeError: each row of m_a must should be of the same size
+>>>
+
+---------------------------------------------
+
+case 13:
+    second argument no rectangular matrix
+
+>>> print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3]]))
+Traceback (most recent call last):
+TypeError: each row of m_b must should be of the same size
+>>>
+
+---------------------------------------------
+
+case 14:
+    wrong dimensions . can´t multiply
+
+>>> print(matrix_mul([[1, 2, 3], [3, 4, 5], [5, 6, 7]], [[1, 2], [3, 4]]))
+Traceback (most recent call last):
+ValueError: m_a and m_b can't be multiplied
+>>>
+
+---------------------------------------------
+
+case 15:
+    big multiplication
+
+>>> print(matrix_mul([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],[[10], [11], [12], [13], [14], [15], [16], [17], [18], [19]]))
+[[735]]
+>>>

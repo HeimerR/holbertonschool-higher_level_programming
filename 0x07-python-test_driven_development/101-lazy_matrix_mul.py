@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-""" Module mul matrix
+""" module to multiply 2 matrices
 """
+import numpy
 
 
-def matrix_mul(m_a, m_b):
-    """t multiplies 2 matrices
+def lazy_matrix_mul(m_a, m_b):
+    """multiply 2 matrices using numpy
     """
     if type(m_a) is not list:
         raise TypeError('m_a must be a list')
@@ -34,13 +35,6 @@ def matrix_mul(m_a, m_b):
         raise TypeError("each row of m_b must should be of the same size")
     if len(m_a[0]) != len(m_b):
         raise ValueError("m_a and m_b can't be multiplied")
-    mul = []
-    for i in range(len(m_a)):
-        mul_row = []
-        for j in range(len(m_b[0])):
-            item = 0
-            for k in range(len(m_b)):
-                item += m_a[i][k] * m_b[k][j]
-            mul_row.append(item)
-        mul.append(mul_row)
-    return mul
+    a = numpy.asarray(m_a)
+    b = numpy.asarray(m_b)
+    return a.dot(b)

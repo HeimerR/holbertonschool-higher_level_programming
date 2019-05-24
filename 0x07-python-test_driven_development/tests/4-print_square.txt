@@ -47,5 +47,10 @@ Traceback (most recent call last):
 TypeError: size must be an integer
 >>>
 
+---------------------------------------------
 
+case 5:
+    size is zero
 
+>>> print_square(0)
+>>>
