@@ -76,7 +76,17 @@ sssss
 
 ---------------------------------------------
 
-case 5:
+case 6:
+    spaces after symbol
+
+>>> text_indentation("hola?  hello")
+hola?
+<BLANKLINE>
+hello
+
+---------------------------------------------
+
+case 7:
     long text
 
 >>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
