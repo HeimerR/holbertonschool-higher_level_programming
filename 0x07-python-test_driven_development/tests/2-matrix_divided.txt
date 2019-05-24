@@ -1,0 +1,130 @@
+This test file tests the module 2-matrix_divided.txt
+--------------------------------------------
+
+case 0:
+    importing succesfully
+
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+>>>
+
+---------------------------------------------
+
+case 1:
+    divides integers
+
+>>> matrix = [
+...     [5, 6, 7],
+...     [7, 8, 9]
+... ]
+>>>
+>>> print(matrix_divided(matrix, 2))
+[[2.5, 3.0, 3.5], [3.5, 4.0, 4.5]]
+>>> print(matrix)
+[[5, 6, 7], [7, 8, 9]]
+>>>
+
+---------------------------------------------
+
+case 2:
+    divides floats
+
+>>> matrix = [
+...     [4.2, 8.4, 2.2],
+...     [10.8, 12.6, 6.2]
+... ]
+>>>
+>>> print(matrix_divided(matrix, 3))
+[[1.4, 2.8, 0.73], [3.6, 4.2, 2.07]]
+>>> print(matrix)
+[[4.2, 8.4, 2.2], [10.8, 12.6, 6.2]]
+>>>
+
+---------------------------------------------
+
+case 3:
+    input wrong type (elements)
+
+>>> matrix = [
+...     [4, 8, 2],
+...     [10.8, "hello", 6.2]
+... ]
+>>>
+>>> print(matrix_divided(matrix, 2))
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+>>>
+
+---------------------------------------------
+
+case 4:
+    input wrong type (no lists)
+
+>>> matrix = [
+...     [4, 8, 2],
+...     (10.8, 3, 6.2)
+... ]
+>>>
+>>> print(matrix_divided(matrix, 2))
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+>>>
+
+---------------------------------------------
+
+case 5:
+    input wrong row len
+
+>>> matrix = [
+...     [4, 8, 2],
+...     [8, 1, 2, 2]
+... ]
+>>>
+>>> print(matrix_divided(matrix, 2))
+Traceback (most recent call last):
+TypeError: Each row of the matrix must have the same size
+>>>
+
+---------------------------------------------
+
+case 6:
+    divisor as a float
+
+>>> matrix = [
+...     [5, 8, 2],
+...     [8, 1, 2]
+... ]
+>>> print(matrix_divided(matrix, 2.5))
+[[2.0, 3.2, 0.8], [3.2, 0.4, 0.8]]
+>>> print(matrix)
+[[5, 8, 2], [8, 1, 2]]
+>>>
+
+---------------------------------------------
+
+case 7:
+    divisor wrong type
+
+>>> matrix = [
+...     [5, 8, 2],
+...     [8, 1, 2]
+... ]
+>>>
+>>> print(matrix_divided(matrix, "two"))
+Traceback (most recent call last):
+TypeError: div must be a number
+>>>
+
+---------------------------------------------
+
+case 8:
+    divisor equal to zero
+
+>>> matrix = [
+...     [5, 8, 2],
+...     [8, 1, 2]
+... ]
+>>>
+>>> print(matrix_divided(matrix, 0))
+Traceback (most recent call last):
+ZeroDivisionError: division by zero
+>>>

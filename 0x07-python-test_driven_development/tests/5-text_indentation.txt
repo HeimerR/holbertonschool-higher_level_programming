@@ -1,0 +1,61 @@
+This test file tests the module 5-text_indentation.py 
+--------------------------------------------
+
+case 0:
+    importing succesfully
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+>>>
+
+---------------------------------------------
+
+case 1:
+    check spaces
+
+>>> text_indentation("""    Lorem .ipsu  ? elit.    """)
+Lorem .
+<BLANKLINE>
+ipsu  ?
+<BLANKLINE>
+elit.
+<BLANKLINE>
+>>>
+
+---------------------------------------------
+
+case 2:
+    no input as stting
+
+>>> text_indentation(98)
+Traceback (most recent call last):
+TypeError: text must be a string
+>>>
+
+---------------------------------------------
+
+case 3:
+    several delimiters together 
+
+>>> text_indentation("""    Lorem .?:  ?ipsu  ? elit.    """)
+Lorem .
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+?
+<BLANKLINE>
+ipsu  ?
+<BLANKLINE>
+elit.
+<BLANKLINE>
+>>>
+
+---------------------------------------------
+
+case 4:
+    Empty string
+
+>>> text_indentation("")
+>>>
+
+

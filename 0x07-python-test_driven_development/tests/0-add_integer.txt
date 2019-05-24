@@ -1,0 +1,83 @@
+This test file tests the module 0-add_integer
+--------------------------------------------
+
+case 0:
+    importing succesfully
+
+>>> add_integer = __import__('0-add_integer').add_integer
+>>>
+
+---------------------------------------------
+
+case 1:
+    add two integers
+
+>>> print(add_integer(2, 2))
+4
+>>>
+
+---------------------------------------------
+
+case 2:
+    add two negative integers
+>>> print(add_integer(-5, -2))
+-7
+>>>
+
+---------------------------------------------
+
+case 3:
+    add first number withiout second (98 second number default)
+
+>>> print(add_integer(3))
+101
+>>>
+
+---------------------------------------------
+
+case 4:
+    use float numbers (casted as int)
+
+>>> print(add_integer(100.9, -2.5))
+98
+>>>
+
+---------------------------------------------
+
+case 5:
+    use wrong input type (only accept int and float)
+
+>>> print(add_integer(4, "Hello"))
+Traceback (most recent call last):
+TypeError: b must be an integer
+>>>
+
+
+---------------------------------------------
+
+case 6:
+    first input as None
+
+>>> print(add_integer(None))
+Traceback (most recent call last):
+TypeError: a must be an integer
+>>>
+
+---------------------------------------------
+
+case 7:
+    empty inputs
+
+>>> print(add_integer())
+Traceback (most recent call last):
+TypeError: add_integer() missing 1 required positional argument: 'a'
+>>>
+
+---------------------------------------------
+
+case 8:
+     check retun type
+
+>>> type(add_integer(1.7, -2))
+<class 'int'>
+>>>

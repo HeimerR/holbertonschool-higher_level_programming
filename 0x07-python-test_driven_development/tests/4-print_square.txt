@@ -1,0 +1,51 @@
+This test file tests the module 4-print_square.py 
+--------------------------------------------
+
+case 0:
+    importing succesfully
+>>> print_square = __import__('4-print_square').print_square
+>>>
+
+---------------------------------------------
+
+case 1:
+    3x3 square
+
+>>> print_square(3)
+###
+###
+###
+>>>
+
+---------------------------------------------
+
+case 2:
+    no integer size
+
+>>> print_square('a')
+Traceback (most recent call last):
+TypeError: size must be an integer
+>>>
+
+---------------------------------------------
+
+case 3:
+    negative size
+
+>>> print_square(-9)
+Traceback (most recent call last):
+ValueError: size must be >= 0
+>>>
+
+---------------------------------------------
+
+case 4:
+    size is float less than zero
+
+>>> print_square(-2.5)
+Traceback (most recent call last):
+TypeError: size must be an integer
+>>>
+
+
+
