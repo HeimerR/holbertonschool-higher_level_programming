@@ -128,3 +128,29 @@ case 8:
 Traceback (most recent call last):
 ZeroDivisionError: division by zero
 >>>
+
+---------------------------------------------
+
+case 9:
+    empty matrix
+
+>>> matrix = [
+...     [],
+...     []
+... ]
+>>> print(matrix_divided(matrix, 1))
+[[], []]
+>>> print(matrix)
+[[], []]
+>>>
+
+---------------------------------------------
+
+case 10:
+    only a list
+
+>>> matrix = [1, 3]
+>>> print(matrix_divided(matrix, 1))
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+>>>
