@@ -9,27 +9,39 @@ class TestMaxInteger(unittest.TestCase):
     """test
     """
     def test_integers(self):
+        """test
+        """
         test_list = [2, 3, 5, 1, 0]
         self.assertEqual(5, max_integer(test_list))
 
     def test_negative_integers(self):
+        """test
+        """
         test_list = [-2, -3, -5, -1, 0]
         self.assertEqual(0, max_integer(test_list))
 
     def test_empty_list(self):
+        """test
+        """
         test_list = []
         self.assertEqual(None, max_integer(test_list))
 
     def test_wrong_type(self):
+        """test
+        """
         test_list = [1, "hola"]
         with self.assertRaises(TypeError):
             max_integer(test_list)
 
     def test_tupla(self):
+        """test
+        """
         test_list = (1, 2)
         self.assertEqual(2, max_integer(test_list))
 
     def test_float(self):
+        """test
+        """
         test_list = [1.2, 2.5]
         self.assertEqual(2.5, max_integer(test_list))
 
