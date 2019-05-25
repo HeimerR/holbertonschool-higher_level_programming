@@ -53,7 +53,7 @@ case 5:
 
 >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], 9]))
 Traceback (most recent call last):
-TypeError: Object arrays are not currently supported
+ValueError: setting an array element with a sequence.
 >>>
 
 ---------------------------------------------
@@ -113,7 +113,7 @@ case 11:
 
 >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[[1], 2], [3, 4]]))
 Traceback (most recent call last):
-TypeError: Object arrays are not currently supported
+ValueError: setting an array element with a sequence.
 >>>
 
 ---------------------------------------------
@@ -123,7 +123,7 @@ case 12:
 
 >>> print(lazy_matrix_mul([[1, 2, 3], [3, 4]], [[1, 2], [3, 4]]))
 Traceback (most recent call last):
-TypeError: Object arrays are not currently supported
+ValueError: setting an array element with a sequence.
 >>>
 
 ---------------------------------------------
@@ -133,7 +133,7 @@ case 13:
 
 >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3]]))
 Traceback (most recent call last):
-TypeError: Object arrays are not currently supported
+ValueError: setting an array element with a sequence.
 >>>
 
 ---------------------------------------------
