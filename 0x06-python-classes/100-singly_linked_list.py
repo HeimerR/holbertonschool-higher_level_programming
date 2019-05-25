@@ -42,37 +42,14 @@ class SinglyLinkedList:
 
     def sorted_insert(self, value):
         new_node = Node(value)
-        if self.__head is None:
-            self.__head = new_node
-        else:
-            locker = Node(self.__head.data, self.__head.next_node)
-            prev = None
-            while self.__head.next_node is not None:
-                if self.__head.data >= value:
-                    break
-                prev = self.__head
-                self.__head = self.__head.next_node
-            if self.__head.data <= value:
-                new_node.next_node = self.__head.next_node
-                self.__head.next_node = new_node
-                if locker.next_node is not None:
-                        self.__head = locker
-            else:
-                if prev is None:
-                    new_node.next_node = self.__head
-                    self.__head = new_node
-                else:
-                    new_node.next_node = self.__head
-                    prev.next_node = new_node
-                    if locker.next_node is not None:
-                        self.__head = locker
-                    if locker.next_node == new_node.next_node:
-                        self.__head = prev
+        new_node.next_node = self.__head
+        self.__head = new_node
+        self.linked_list = []
+        aux = Node(self.__head.data, self.__head.next_node)
+        while aux is not None:
+            self.linked_list.append(aux.data)
+            aux = aux.next_node
+        self.linked_list.sort()
 
     def __str__(self):
-        str_list = []
-        while self.__head is not None:
-            str_list.append(str(self.__head.data))
-            str_list.append('\n')
-            self.__head = self.__head.next_node
-        return ''.join(str_list)
+        return '\n'.join(list(map(str, self.linked_list)))
