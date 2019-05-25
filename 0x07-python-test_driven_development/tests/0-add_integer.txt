@@ -102,3 +102,14 @@ case 10:
 Traceback (most recent call last):
 OverflowError: cannot convert float infinity to integer
 >>>
+
+---------------------------------------------
+
+case 11:
+     float NaN
+
+>>> a = float('nan')
+>>> type(add_integer(a, -2))
+Traceback (most recent call last):
+ValueError: cannot convert float NaN to integer
+>>>
