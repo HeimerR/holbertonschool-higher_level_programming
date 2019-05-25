@@ -92,3 +92,13 @@ case 9:
 >>> type(add_integer(1.7, -2))
 <class 'int'>
 >>>
+
+---------------------------------------------
+
+case 10:
+     overflow
+
+>>> type(add_integer(10e500**2, 1))
+Traceback (most recent call last):
+OverflowError: cannot convert float infinity to integer
+>>>
