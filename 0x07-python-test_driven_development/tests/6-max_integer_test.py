@@ -45,5 +45,17 @@ class TestMaxInteger(unittest.TestCase):
         test_list = [1.2, 2.5]
         self.assertEqual(2.5, max_integer(test_list))
 
+    def test_one_element(self):
+        """test
+        """
+        test_list = [1]
+        self.assertEqual(1, max_integer(test_list))
+
+    def test_max_at_the_beginning(self):
+        """test
+        """
+        test_list = [4, 2]
+        self.assertEqual(4, max_integer(test_list))
+
 if __name__ == '__main__':
     unittest.main()
