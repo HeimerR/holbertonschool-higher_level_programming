@@ -54,3 +54,13 @@ case 5:
 
 >>> print_square(0)
 >>>
+
+---------------------------------------------
+
+case 6:
+    missing argument
+
+>>> print_square()
+Traceback (most recent call last):
+TypeError: print_square() missing 1 required positional argument: 'size'
+>>>
