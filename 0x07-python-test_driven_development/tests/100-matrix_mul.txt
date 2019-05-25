@@ -153,3 +153,24 @@ case 15:
 >>> print(matrix_mul([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],[[10], [11], [12], [13], [14], [15], [16], [17], [18], [19]]))
 [[735]]
 >>>
+
+---------------------------------------------
+
+case 16:
+    missing one argument
+
+>>> print(matrix_mul([[1, 2], [3, 4]]))
+Traceback (most recent call last):
+TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
+>>>
+
+---------------------------------------------
+
+case 17:
+    missing two arguments
+
+>>> print(matrix_mul())
+Traceback (most recent call last):
+TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+>>>
+
