@@ -2,7 +2,6 @@
 """
 Function that returns the dictionary description
 """
-import json
 
 
 def class_to_json(obj):
