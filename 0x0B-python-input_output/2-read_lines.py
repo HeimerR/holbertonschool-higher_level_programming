@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""module 
+"""module
 reads n lines of a text file
 """
 
@@ -15,4 +15,4 @@ def read_lines(filename="", nb_lines=0):
         else:
             my_file.seek(0)
             for i in range(nb_lines):
-                print(my_file.readline(), end="")                    
+                print(my_file.readline(), end="")
