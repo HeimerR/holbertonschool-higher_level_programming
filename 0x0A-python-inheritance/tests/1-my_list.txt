@@ -55,7 +55,7 @@ case 4: empty list
 
 -------------------------------------------
 
-case 5:
+case 5: unique number
 
 >>> my_list = MyList()
 >>> my_list.append(1)
@@ -67,6 +67,8 @@ case 5:
 
 -------------------------------------------
 
+case 6: same number
+
 >>> my_list2 = MyList()
 >>> my_list2.append(1)
 >>> my_list2.append(1)
@@ -74,4 +76,14 @@ case 5:
 >>> my_list2.append(1)
 >>> my_list2.print_sorted()
 [1, 1, 1, 1]
+>>>
+
+-------------------------------------------
+
+case 7: parent object
+>>> my_list = [1, 2, 3]
+>>> my_list.print_sorted()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'print_sorted'
 >>>
