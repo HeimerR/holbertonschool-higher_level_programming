@@ -87,3 +87,19 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: 'list' object has no attribute 'print_sorted'
 >>>
+
+-------------------------------------------
+
+case 8: negative numbers
+
+>>> MyList = __import__('1-my_list').MyList
+>>> my_list = MyList()
+>>> my_list.append(5)
+>>> my_list.append(1)
+>>> my_list.append(-1)
+>>> my_list.append(51)
+>>> my_list.append(-5)
+>>> my_list.print_sorted()
+[-5, -1, 1, 5, 51]
+>>>
+
