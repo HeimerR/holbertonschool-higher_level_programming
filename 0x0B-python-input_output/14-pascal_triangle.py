@@ -11,17 +11,16 @@ def pascal_triangle(n):
     pascal = [[1]]
     if n == 1:
         return pascal
-    for i in range(2:n):
-        step = []
-        step.insert(0, 1)
-        for i in range(
-        s = pascal[0][0]
-        index = 1
-        step.insert(index, s)
+    for j in range(1, n):
+        for i in range(1, n):
+            step = []
+            step.insert(0, 1)
+            for k in range(len(pascal[j - 1]) - 1):
+                v = pascal[j - 1][k - 1] + pascal[j - 1][k]
+                step.insert(k, v)
+            step.insert(-1, 1)
         pascal.append(step)
-    return pascal
-    #    for j in range(2:n):
-     #       item = 
-      #      step.insert(index, obj)
-        
-        
+    pascal1 = list(map(lambda x: [1] + x, pascal))
+    for sub in pascal1:
+        sub.pop(-1)
+    return pascal1
