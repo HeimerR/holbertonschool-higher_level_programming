@@ -22,7 +22,12 @@ try:
                 if times_status[i] != 0:
                     print("{:}: {:d}".format(status[i], times_status[i]))
             counter = 0
-except KeyboardInterrupt:
+except Exception:
+    print("File size: {:d}".format(total_size))
+    for i in range(8):
+        if times_status[i] != 0:
+            print("{:}: {:d}".format(status[i], times_status[i]))
+finally:
     print("File size: {:d}".format(total_size))
     for i in range(8):
         if times_status[i] != 0:
