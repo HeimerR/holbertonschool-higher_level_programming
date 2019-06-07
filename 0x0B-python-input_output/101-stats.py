@@ -10,12 +10,14 @@ counter = 0
 try:
     for line in sys.stdin:
         line_list = line.split(" ")
-        size = line_list[-1]
-        code = line_list[-2]
-        total_size += int(size)
-        i = status.index(code)
-        times_status[i] += 1
-        counter += 1
+        if len(line_list) > 2:
+            size = line_list[-1]
+            code = line_list[-2]
+            if code in status:
+                i = status.index(code)
+                times_status[i] += 1
+            total_size += int(size)
+            counter += 1
         if counter == 10:
             print("File size: {:d}".format(total_size))
             for i in range(8):
@@ -23,10 +25,7 @@ try:
                     print("{:}: {:d}".format(status[i], times_status[i]))
             counter = 0
 except Exception:
-    print("File size: {:d}".format(total_size))
-    for i in range(8):
-        if times_status[i] != 0:
-            print("{:}: {:d}".format(status[i], times_status[i]))
+    pass
 finally:
     print("File size: {:d}".format(total_size))
     for i in range(8):
