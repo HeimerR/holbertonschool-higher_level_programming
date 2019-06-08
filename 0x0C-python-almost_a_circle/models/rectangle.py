@@ -70,12 +70,21 @@ class Rectangle(Base):
               * self.__height, end='')
 
     def __str__(self):
-        return ("[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format
-               (self.id, self.__x, self.__y, self.__width, self.__height))
-
-    def update(self, *args):
-        attrs = (self.id, self.__width, self.__height, self.__x, self.__y)
-        args_aux = list(attrs[i] for i in range(len(args), 5))
-        args_aux2 =  list(args) + args_aux
-        (self.id, self.__width, self.__height, self.__x, self.__y) = args_aux2
-
+        str1 = ("[{}] ({:d}) {:d}/{:d} - {:d}".format
+               (type(self).__name__, self.id, self.__x, self.__y, self.__width))
+        if type(self).__name__ == 'Rectangle':
+            str1 = str1 + "/{:d}".format(self.__height)
+        return str1
+    
+    def update(self, *args, **kwargs):
+        attrs = [self.id, self.__width, self.__height, self.__x, self.__y]
+        var = ('id', 'width', 'height', 'x', 'y')
+        if kwargs is not None and (args is None or len(args) is 0):
+            for key, value in kwargs.items():
+                if key in var:
+                    attrs[var.index(key)] = value
+            (self.id, self.__width, self.__height, self.__x, self.__y) = attrs
+        else:
+            args_aux = list(attrs[i] for i in range(len(args), 5))
+            args_aux2 = list(args) + args_aux
+            (self.id, self.__width, self.__height, self.__x, self.__y) = args_aux2
