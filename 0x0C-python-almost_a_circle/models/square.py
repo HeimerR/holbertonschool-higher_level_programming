@@ -22,11 +22,15 @@ class Square(Rectangle):
     def update(self, *args, **kwargs):
         if kwargs != None and (args == None or len(args) == 0):
             if 'size' in kwargs.keys():
-                print("hola")
                 aux = {'width': kwargs['size'], 'height': kwargs['size']}
                 kwargs.update(aux)
-        args_list = list(args)
-        if len(args) > 1:
-            args_list.insert(1, args[1])
-        super().update(*args_list)
-            
+            super().update(*args, **kwargs)
+        else:
+            args_list = list(args)
+            if len(args) > 1:
+                args_list.insert(1, args[1])
+            super().update(*args_list, **kwargs)
+
+    def to_dictionary(self):
+        new_dict = {'id': self.id, 'size': self.__dict__['_Rectangle__width'], 'x': self.__dict__['_Rectangle__x'], 'y': self.__dict__['_Rectangle__y']}
+        return new_dict

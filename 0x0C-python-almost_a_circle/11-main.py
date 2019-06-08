@@ -4,7 +4,7 @@ from models.square import Square
 
 if __name__ == "__main__":
 
-    """    s1 = Square(5)
+    s1 = Square(5)
     print(s1)
 
     s1.update(10)
@@ -19,7 +19,6 @@ if __name__ == "__main__":
     s1.update(1, 2, 3, 4)
     print(s1)
 
-    """
     s1.update(x=12)
     print(s1)
 

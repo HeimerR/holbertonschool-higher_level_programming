@@ -88,3 +88,8 @@ class Rectangle(Base):
             args_aux = list(attrs[i] for i in range(len(args), 5))
             args_aux2 = list(args) + args_aux
             (self.id, self.__width, self.__height, self.__x, self.__y) = args_aux2
+
+    def to_dictionary(self):
+        new_dict = { 'id': self.__dict__['id'], 'width': self.__dict__['_Rectangle__width'],
+                'height': self.__dict__['_Rectangle__height'], 'x': self.__dict__['_Rectangle__x'], 'y': self.__dict__['_Rectangle__y']}
+        return new_dict
