@@ -4,7 +4,8 @@ Module base
 """
 import json
 import csv
-
+import turtle
+import random
 
 
 class Base:
@@ -83,4 +84,34 @@ class Base:
 
     @staticmethod
     def draw(list_rectangles, list_squares):
+        win = turtle.Screen()
+        win.bgcolor("lightgreen")
+        cursor = turtle.Turtle()
+        win.colormode(255)
+        cursor.pensize(3)
 
+        for shape in list_rectangles:
+            colors = (random.randint(1,255), random.randint(1,255), random.randint(1,255))
+            cursor.pencolor(colors)
+            cursor.up()
+            cursor.setx(shape.x)
+            cursor.sety(shape.y)
+            cursor.down()
+            for i in range(2):
+                cursor.forward(shape.width)
+                cursor.right(90)
+                cursor.forward(shape.height)
+                cursor.right(90)
+
+        for shape in list_squares:
+            colors = (random.randint(1,255), random.randint(1,255), random.randint(1,255))
+            cursor.pencolor(colors)
+            cursor.up()
+            cursor.setx(shape.x)
+            cursor.sety(shape.y)
+            cursor.down()
+            for i in range(4):
+                cursor.forward(shape.size)
+                cursor.right(90)
+
+        win.exitonclick()
