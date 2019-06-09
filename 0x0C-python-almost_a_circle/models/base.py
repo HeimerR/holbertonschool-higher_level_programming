@@ -3,6 +3,7 @@
 Module base
 """
 import json
+import csv
 
 
 
@@ -51,4 +52,35 @@ class Base:
 
         except IOError:
             return []
+    
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        with open(cls.__name__ + ".csv", mode="w") as f_csv:
+            if list_objs != None:
+                values = [ 'id', 'width', 'height', 'size', 'x', 'y'] 
+                list_dict = [item.to_dictionary() for item in list_objs]
+                values_header = filter(lambda y: y in list_dict[0], values)
+                writer = csv.DictWriter(f_csv, fieldnames=list(values_header))
+                writer.writeheader()
+                for line in list_dict:
+                    writer.writerow(line)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        try:
+            with open(cls.__name__ + ".csv") as j_file:
+                reader = csv.DictReader(j_file)
+                list_dicts = []
+                for row in reader:
+                    for keys in row:
+                        row[keys] = int(row[keys])
+                    list_dicts.append(row)
+                list_objs = [cls.create(**obj) for obj in list_dicts]
+                return list_objs
+
+        except IOError:
+            return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
 
