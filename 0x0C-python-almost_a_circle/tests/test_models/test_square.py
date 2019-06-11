@@ -17,6 +17,10 @@ class TestSquare(unittest.TestCase):
     def tearDown(self):
         sys.stdout = self.old_stdout
 
+    def test_id_s(self):
+        g1 = Square(7)
+        self.assertEqual(g1.id, 111)
+
     def test_excep(self):
         with self.assertRaises(TypeError):
             Square("2")
