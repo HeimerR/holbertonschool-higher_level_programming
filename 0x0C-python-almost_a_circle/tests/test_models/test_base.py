@@ -25,26 +25,32 @@ class TestBase(unittest.TestCase):
 
     def test_setid(self):
         self.assertEqual(self.b1.id, 1)
+
     def test_setid2(self):
         self.assertEqual(self.b2.id, 2)
+
     def test_setid3(self):
         self.assertEqual(self.b3.id, -1)
+
     def test_setid4(self):
         self.assertEqual(self.b4.id, 12)
+
     def test_setid5(self):
         self.assertEqual(self.b5.id, "hola")
+
     def test_setid6(self):
         self.assertEqual(self.b6.id, 3.1)
+
     def test_setid7(self):
         self.assertEqual(self.b7.id, 3)
 
     def setUp(self):
         self.old_stdout = sys.stdout
         sys.stdout = self.mystdout = StringIO()
-    
+
     def tearDown(self):
         sys.stdout = self.old_stdout
-        
+
     @classmethod
     def tearDownClass(cls):
         del cls.b1

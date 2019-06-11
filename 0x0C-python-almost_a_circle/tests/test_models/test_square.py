@@ -13,18 +13,18 @@ class TestSquare(unittest.TestCase):
     def setUp(self):
         self.old_stdout = sys.stdout
         sys.stdout = self.mystdout = StringIO()
-    
+
     def tearDown(self):
         sys.stdout = self.old_stdout
-        
+
     def test_excep(self):
         with self.assertRaises(TypeError):
             Square("2")
-  
+
     def test_excep2(self):
         with self.assertRaises(ValueError):
             r5 = Square(10)
-            r5.width= -10
+            r5.width = - 10
 
     def test_excep3(self):
         with self.assertRaises(TypeError):
@@ -34,7 +34,7 @@ class TestSquare(unittest.TestCase):
     def test_excep4(self):
         with self.assertRaises(ValueError):
             Square(10, 3, -1)
-    
+
     def test_area(self):
         r7 = Square(3)
         self.assertEqual(r7.area(), 9)
