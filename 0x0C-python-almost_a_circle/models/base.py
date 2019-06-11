@@ -13,7 +13,7 @@ class Base:
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """ check inputs"""
+        """ check inputs """
         if id is not None:
             self.id = id
         else:
@@ -22,14 +22,14 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """ check inputs"""
+        """ check inputs """
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         return json.dumps(list_dictionaries)
 
     @classmethod
-    def save_to_file(cls, list_objs): 
-        """ check inputs"""
+    def save_to_file(cls, list_objs):
+        """ check inputs """
         with open(cls.__name__ + ".json", mode="w") as j_file:
             if list_objs is not None:
                 list_dict = [item.to_dictionary() for item in list_objs]
@@ -37,21 +37,21 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """ check inputs"""
+        """ check inputs """
         if json_string is None:
             return []
         return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """ check inputs"""
+        """ check inputs """
         dummy = cls(1, 1)
         dummy.update(**dictionary)
         return dummy
 
     @classmethod
     def load_from_file(cls):
-        """ check inputs"""
+        """ check inputs """
         try:
             with open(cls.__name__ + ".json", encoding="utf-8") as j_file:
                 print(j_file)
@@ -64,7 +64,7 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """ check inputs"""
+        """ check inputs """
         with open(cls.__name__ + ".csv", mode="w") as f_csv:
             if list_objs is not None:
                 values = ['id', 'width', 'height', 'size', 'x', 'y']
@@ -77,7 +77,7 @@ class Base:
 
     @classmethod
     def load_from_file_csv(cls):
-        """ check inputs"""
+        """ check inputs """
         try:
             with open(cls.__name__ + ".csv") as j_file:
                 reader = csv.DictReader(j_file)
@@ -94,7 +94,7 @@ class Base:
 
     @staticmethod
     def draw(list_rectangles, list_squares):
-        """ check inputs"""
+        """ check inputs """
         win = turtle.Screen()
         win.bgcolor("lightgreen")
         cursor = turtle.Turtle()
