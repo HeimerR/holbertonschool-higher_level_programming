@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-""" module rectangle"""
+""" module rectangle """
 from models.base import Base
 
 
 class Rectangle(Base):
-    """ class Rectangle"""
+    """ class Rectangle """
+
     def __init__(self, width, height, x=0, y=0, id=None):
-        """init"""
+        """ check inputs  """
         self.width = width
         self.height = height
         self.x = x
@@ -15,27 +16,27 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """ width"""
+        """ check input """
         return self.__width
 
     @property
     def height(self):
-        """height"""
+        """ check input """
         return self.__height
 
     @property
     def x(self):
-        """x"""
+        """ check input """
         return self.__x
 
     @property
     def y(self):
-        """y"""
+        """ check input """
         return self.__y
 
     @width.setter
     def width(self, value):
-        """width"""
+        """ check input """
         if type(value) != int:
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -44,7 +45,7 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, value):
-        """height"""
+        """ check input """
         if type(value) != int:
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -53,7 +54,7 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
-        """x"""
+        """ check input """
         if type(value) != int:
             raise TypeError("x must be an integer")
         if value < 0:
@@ -62,7 +63,7 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
-        """y"""
+        """ check input """
         if type(value) != int:
             raise TypeError("y must be an integer")
         if value < 0:
@@ -70,16 +71,16 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
-        """area"""
+        """ check input """
         return self.__width * self.__height
 
     def display(self):
-        """display"""
+        """ check input """
         print('\n' * self.__y + (" " * self.__x +
               (('#' * self.__width) + '\n')) * self.__height, end='')
 
     def __str__(self):
-        """str"""
+        """ check input """
         str1 = ("[{}] ({:d}) {:d}/{:d} - {:d}".format
                 (type(self).__name__, self.id, self.__x,
                  self.__y, self.__width))
@@ -88,7 +89,7 @@ class Rectangle(Base):
         return str1
 
     def update(self, *args, **kwargs):
-        """update"""
+        """ check input """
         attrs = [self.id, self.__width, self.__height, self.__x, self.__y]
         var = ('id', 'width', 'height', 'x', 'y')
         if kwargs is not None and (args is None or len(args) is 0):
@@ -103,7 +104,7 @@ class Rectangle(Base):
              self.__x, self.__y) = args_aux2
 
     def to_dictionary(self):
-        """to dictionary"""
+        """ check input """
         new_dict = {'id': self.id,
                     'width': self.width,
                     'height': self.height,
