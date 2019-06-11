@@ -5,41 +5,36 @@ unittest
 from models.base import Base
 from models.rectangle import Rectangle
 import unittest
-"""import sys
-from contextlib import contextmanager
-from StringIO import StringIO
-"""
-
-"""
-@contextmanager
-def captured_output():
-    new_out, new_err = StringIO(), StringIO()
-    old_out, old_err = sys.stdout, sys.stderr
-    try:
-        sys.stdout, sys.stderr = new_out, new_err
-        yield sys.stdout, sys.stderr
-    finally:
-        sys.stdout, sys.stderr = old_out, old_err
-"""
+import sys
+from io import StringIO
 
 
 class TestRectangle(unittest.TestCase):
 
-    """def test_setrectangle(self):
-        r1 = Rectangle(10, 2)
-        self.assertEqual(r1.id, 3)
+    """@classmethod
+    def SetUpClass(cls):
+        cls.r100 = Rectangle(10, 2)
+        cls.r200 = Rectangle(2, 10)
+        cls.r300 = Rectangle(1, 2, 3, 4)
+        cls.r400 = Rectangle(10, 2, 0, 0,12)
+        
+    def test_setrectangle(self):
+        self.assertEqual(self.r100.id, 3)
     def test_setrectangle2(self):
-        r2 = Rectangle(2, 10)
-        self.assertEqual(r2.id, 4)
+        self.assertEqual(self.r200.id, 4)
     def test_setrectangle3(self):
-        r3 = Rectangle(1, 2, 3, 4)
-        self.assertEqual(r3.id, 5)
+        self.assertEqual(self.r300.id, 5)
     def test_setrectangle4(self):
-        r4 = Rectangle(10, 2, 0, 0,12)
-        self.assertEqual(r4.id, 12)
-
+        self.assertEqual(self.r400.id, 12)
     """
 
+    def setUp(self):
+        self.old_stdout = sys.stdout
+        sys.stdout = self.mystdout = StringIO()
+    
+    def tearDown(self):
+        sys.stdout = self.old_stdout
+        
     def test_excep(self):
         with self.assertRaises(TypeError):
             Rectangle(10, "2")
@@ -62,13 +57,36 @@ class TestRectangle(unittest.TestCase):
         r7 = Rectangle(3, 2)
         self.assertEqual(r7.area(), 6)
 
-    """def test_display(self):
-        with captured_output() as (out, err):
-            r8 = Rectangle(4, 6)
-            r8.display()
-            lines = out.getvalue().strip()
-            self.assertEqual("####\n####\n####\n####\n####\n####\n", lines)
-    """
+    def test_display(self):
+        r8 = Rectangle(4, 6)
+        r8.display()
+        self.assertEqual(self.mystdout.getvalue(), "####\n####\n####\n####\n####\n####\n")
+
+    def test_display2(self):
+        r8 = Rectangle(2, 2)
+        r8.display()
+        self.assertEqual(self.mystdout.getvalue(), "##\n##\n")
+
+    def test_display3(self):
+        r8 = Rectangle(1, 1)
+        r8.display()
+        self.assertEqual(self.mystdout.getvalue(), "#\n")
+
+    def test_display4(self):
+        r8 = Rectangle(1, 10)
+        r8.display()
+        self.assertEqual(self.mystdout.getvalue(), "#\n#\n#\n#\n#\n#\n#\n#\n#\n#\n")
+
+    def test_display5(self):
+        r8 = Rectangle(2, 3, 2, 2)
+        r8.display()
+        self.assertEqual(self.mystdout.getvalue(), "\n\n  ##\n  ##\n  ##\n")
+
+    def test_display6(self):
+        r8 = Rectangle(3, 2, 1)
+        r8.display()
+        self.assertEqual(self.mystdout.getvalue(), " ###\n ###\n")
+
     def test_str(self):
         r8 = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(str(r8), "[Rectangle] (12) 2/1 - 4/6")
@@ -77,7 +95,7 @@ class TestRectangle(unittest.TestCase):
         r9 = Rectangle(5, 5, 1)
         self.assertEqual(str(r9), "[Rectangle] ({:d}) 1/0 - 5/5".format(r9.id))
 
-    def test_str2(self):
+    def test_str3(self):
         r9 = Rectangle(5, 5, 1)
         self.assertEqual(str(r9), "[Rectangle] ({:d}) 1/0 - 5/5".format(r9.id))
 
@@ -129,6 +147,23 @@ class TestRectangle(unittest.TestCase):
         r17 = Rectangle(10, 10, 10, 10)
         r17.update(x=1, height=2, y=3, width=4)
         self.assertEqual(str(r17), "[Rectangle] ({:d}) 1/3 - 4/2".format(r17.id))
+
+    def test_to_dict(self):
+        r1 = Rectangle(10, 2, 1, 9, 1)
+        r1_dictionary = r1.to_dictionary()
+        self.assertEqual(type(r1_dictionary), dict)
+
+    def test_to_dict2(self):
+        r1 = Rectangle(10, 2, 1, 9, 1)
+        r1_dictionary = r1.to_dictionary()
+        self.assertEqual(r1_dictionary, {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10})
+
+    def test_to_dict3(self):
+        r1 = Rectangle(10, 2, 1, 9, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle(1, 1)
+        r2.update(**r1_dictionary)
+        self.assertFalse(r1 == r2)
 
 if __name__ == '__main__':
     unittest.main()
