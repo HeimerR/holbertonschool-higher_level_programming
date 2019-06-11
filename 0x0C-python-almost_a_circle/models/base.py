@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" testing comments """
+"""
+Module base
+"""
 import json
 import csv
 import turtle
@@ -7,11 +9,11 @@ import random
 
 
 class Base:
-    """ coments of class """
+    """class"""
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """ class to create a rectangle object """
+        """ check inputs """
         if id is not None:
             self.id = id
         else:
@@ -20,150 +22,114 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """
-        class to create a rectangle object
-        """
+        """ check inputs """
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         return json.dumps(list_dictionaries)
 
-    @staticmethod
-    def draw(list_rectangles, list_squares):
-        """
-        class to create a rectangle object
-        """
-        ventana = turtle.Screen()
-        lapiz = turtle.Turtle()
-
-        lapiz.pensize(2)
-
-        for info in list_rectangles:
-            R = random.random()
-            B = random.random()
-            G = random.random()
-            lapiz.color(R, G, B)
-            print(info.x)
-            lapiz.up()
-            lapiz.setx(info.x)
-            lapiz.sety(info.y)
-            lapiz.down()
-            lapiz.begin_fill()
-            for i in range(2):
-                lapiz.forward(info.width)
-                lapiz.right(90)
-                lapiz.forward(info.height)
-                lapiz.right(90)
-            lapiz.end_fill()
-
-        for info in list_squares:
-            R = random.random()
-            B = random.random()
-            G = random.random()
-            lapiz.color(R, G, B)
-            print(info.x)
-            lapiz.up()
-            lapiz.setx(info.x)
-            lapiz.sety(info.y)
-            lapiz.down()
-            lapiz.begin_fill()
-            for i in range(2):
-                lapiz.forward(info.width)
-                lapiz.right(90)
-                lapiz.forward(info.height)
-                lapiz.right(90)
-            lapiz.end_fill()
-        ventana.exitonclick()
-        """
-        t = turtle.Turtle()
-        t.forward(100)
-        turtle.done()
-        """
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """ check inputs """
+        with open(cls.__name__ + ".json", mode="w") as j_file:
+            if list_objs is not None:
+                list_dict = [item.to_dictionary() for item in list_objs]
+                j_file.write(cls.to_json_string(list_dict))
+            else:
+                j_file.write(cls.to_json_string([]))
 
     @staticmethod
     def from_json_string(json_string):
-        """
-        class to create a rectangle object
-        """
+        """ check inputs """
         if json_string is None:
             return []
         return json.loads(json_string)
 
     @classmethod
-    def save_to_file(cls, list_objs):
-        """
-        class to create a rectangle object
-        """
-        listm = []
-        if list_objs is not None:
-            for info in list_objs:
-                listm.append(info.to_dictionary())
-
-        filename = "{}.json".format(cls.__name__)
-        with open(filename, "w") as write_file:
-            write_file.write(cls.to_json_string(listm))
-
-    @classmethod
     def create(cls, **dictionary):
-        """
-        class to create a rectangle object
-        """
+        """ check inputs """
         if cls.__name__ == "Rectangle":
-            text = cls(1, 1)
-        elif cls.__name__ == "Square":
-            text = cls(1)
-        cls.update(text, **dictionary)
-        return text
+            dummy = cls(1, 1)
+        else:
+            dummy = cls(1)
+        dummy.update(**dictionary)
+        return dummy
 
     @classmethod
     def load_from_file(cls):
-        """
-        class to create a rectangle object
-        """
-        listm = []
-        filename = "{}.json".format(cls.__name__)
+        """ check inputs """
         try:
-            with open(filename, "r") as read_file:
-                listm = cls.from_json_string(read_file.read())
-            for i, j in enumerate(listm):
-                listm[i] = cls.create(**listm[i])
+            with open(cls.__name__ + ".json", encoding="utf-8") as j_file:
+                print(j_file)
+                list_file = cls.from_json_string(j_file.read())
+                print(list_file)
+                return [cls.create(**obj) for obj in list_file]
+
         except:
-            pass
-        return listm
+            return []
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """
-        class to create a rectangle object
-        """
-        filename = "{}.csv".format(cls.__name__)
-        if cls.__name__ == "Rectangle":
-            text = ["width", "height", "x", "y", "id"]
-        elif cls.__name__ == "Square":
-            text = ["size", "x", "y", "id"]
-
-        with open(filename, 'w') as csvFile:
-            writer = csv.DictWriter(csvFile, fieldnames=text)
+        """ check inputs """
+        with open(cls.__name__ + ".csv", mode="w") as f_csv:
             if list_objs is not None:
+                values = ['id', 'width', 'height', 'size', 'x', 'y']
+                list_dict = [item.to_dictionary() for item in list_objs]
+                values_header = filter(lambda y: y in list_dict[0], values)
+                writer = csv.DictWriter(f_csv, fieldnames=list(values_header))
                 writer.writeheader()
-                for text1 in list_objs:
-                    writer.writerow(text1.to_dictionary())
-            else:
-                writer.writerow([[]])
+                for line in list_dict:
+                    writer.writerow(line)
 
     @classmethod
     def load_from_file_csv(cls):
-        """
-        class to create a rectangle object
-        """
-        filename = "{}.csv".format(cls.__name__)
-        listm = []
+        """ check inputs """
         try:
-            with open(filename, newline="") as csvFile:
-                read = csv.DictReader(csvFile)
-                for row in read:
-                    for k, v in row.items():
-                        row[k] = int(v)
-                    listm.append(row)
-            return [cls.create(**oj) for oj in listm]
-        except FileNotFoundError:
-            return [[]]
+            with open(cls.__name__ + ".csv") as j_file:
+                reader = csv.DictReader(j_file)
+                list_dicts = []
+                for row in reader:
+                    for keys in row:
+                        row[keys] = int(row[keys])
+                    list_dicts.append(row)
+                list_objs = [cls.create(**obj) for obj in list_dicts]
+                return list_objs
+
+        except IOError:
+            return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """ check inputs """
+        win = turtle.Screen()
+        win.bgcolor("lightgreen")
+        cursor = turtle.Turtle()
+        win.colormode(255)
+        cursor.pensize(3)
+
+        for shape in list_rectangles:
+            colors = (random.randint(1, 255), random.randint(1, 255),
+                      random.randint(1, 255))
+            cursor.pencolor(colors)
+            cursor.up()
+            cursor.setx(shape.x)
+            cursor.sety(shape.y)
+            cursor.down()
+            for i in range(2):
+                cursor.forward(shape.width)
+                cursor.right(90)
+                cursor.forward(shape.height)
+                cursor.right(90)
+
+        for shape in list_squares:
+            colors = (random.randint(1, 255), random.randint(1, 255),
+                      random.randint(1, 255))
+            cursor.pencolor(colors)
+            cursor.up()
+            cursor.setx(shape.x)
+            cursor.sety(shape.y)
+            cursor.down()
+            for i in range(4):
+                cursor.forward(shape.size)
+                cursor.right(90)
+
+        win.exitonclick()
