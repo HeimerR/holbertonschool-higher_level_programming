@@ -20,7 +20,7 @@ class Square(Rectangle):
         Rectangle.height.fset(self, value)
 
     def update(self, *args, **kwargs):
-        if kwargs != None and (args == None or len(args) == 0):
+        if kwargs and (args is None or len(args) == 0):
             if 'size' in kwargs.keys():
                 aux = {'width': kwargs['size'], 'height': kwargs['size']}
                 kwargs.update(aux)
@@ -32,5 +32,8 @@ class Square(Rectangle):
             super().update(*args_list, **kwargs)
 
     def to_dictionary(self):
-        new_dict = {'id': self.id, 'size': self.__dict__['_Rectangle__width'], 'x': self.__dict__['_Rectangle__x'], 'y': self.__dict__['_Rectangle__y']}
+        new_dict = {'id': self.id,
+                    'size': self.size,
+                    'x': self.x,
+                    'y': self.y}
         return new_dict

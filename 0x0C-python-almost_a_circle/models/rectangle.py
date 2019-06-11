@@ -66,16 +66,17 @@ class Rectangle(Base):
         return self.__width * self.__height
 
     def display(self):
-        print( '\n' * self.__y + (" " * self.__x + (('#' * self.__width) + '\n'))
-              * self.__height, end='')
+        print('\n' * self.__y + (" " * self.__x +
+              (('#' * self.__width) + '\n')) * self.__height, end='')
 
     def __str__(self):
         str1 = ("[{}] ({:d}) {:d}/{:d} - {:d}".format
-               (type(self).__name__, self.id, self.__x, self.__y, self.__width))
+                (type(self).__name__, self.id, self.__x,
+                 self.__y, self.__width))
         if type(self).__name__ == 'Rectangle':
             str1 = str1 + "/{:d}".format(self.__height)
         return str1
-    
+
     def update(self, *args, **kwargs):
         attrs = [self.id, self.__width, self.__height, self.__x, self.__y]
         var = ('id', 'width', 'height', 'x', 'y')
@@ -87,9 +88,13 @@ class Rectangle(Base):
         else:
             args_aux = list(attrs[i] for i in range(len(args), 5))
             args_aux2 = list(args) + args_aux
-            (self.id, self.__width, self.__height, self.__x, self.__y) = args_aux2
+            (self.id, self.__width, self.__height,
+             self.__x, self.__y) = args_aux2
 
     def to_dictionary(self):
-        new_dict = { 'id': self.__dict__['id'], 'width': self.__dict__['_Rectangle__width'],
-                'height': self.__dict__['_Rectangle__height'], 'x': self.__dict__['_Rectangle__x'], 'y': self.__dict__['_Rectangle__y']}
+        new_dict = {'id': self.id,
+                    'width': self.width,
+                    'height': self.height,
+                    'x': self.x,
+                    'y': self.y}
         return new_dict

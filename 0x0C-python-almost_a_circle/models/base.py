@@ -11,9 +11,10 @@ import random
 class Base:
     """class"""
     __nb_objects = 0
+
     def __init__(self, id=None):
         """id"""
-        if id != None:
+        if id is not None:
             self.id = id
         else:
             type(self).__nb_objects += 1
@@ -24,17 +25,17 @@ class Base:
         if list_dictionaries is None or len(list_dictionaries) is 0:
             return []
         return json.dumps(list_dictionaries)
-   
+
     @classmethod
     def save_to_file(cls, list_objs):
-        with open(cls.__name__ + ".json", encoding="utf-8", mode="w") as j_file:
-            if list_objs != None:
+        with open(cls.__name__ + ".json", mode="w") as j_file:
+            if list_objs is not None:
                 list_dict = [item.to_dictionary() for item in list_objs]
                 j_file.write(cls.to_json_string(list_dict))
 
     @staticmethod
     def from_json_string(json_string):
-        if json_string is None :
+        if json_string is None:
             return []
         return json.loads(json_string)
 
@@ -48,17 +49,19 @@ class Base:
     def load_from_file(cls):
         try:
             with open(cls.__name__ + ".json", encoding="utf-8") as j_file:
+                print(j_file)
                 list_file = cls.from_json_string(j_file.read())
+                print(list_file)
                 return [cls.create(**obj) for obj in list_file]
 
         except IOError:
             return []
-    
+
     @classmethod
     def save_to_file_csv(cls, list_objs):
         with open(cls.__name__ + ".csv", mode="w") as f_csv:
-            if list_objs != None:
-                values = [ 'id', 'width', 'height', 'size', 'x', 'y'] 
+            if list_objs is not None:
+                values = ['id', 'width', 'height', 'size', 'x', 'y']
                 list_dict = [item.to_dictionary() for item in list_objs]
                 values_header = filter(lambda y: y in list_dict[0], values)
                 writer = csv.DictWriter(f_csv, fieldnames=list(values_header))
@@ -91,7 +94,8 @@ class Base:
         cursor.pensize(3)
 
         for shape in list_rectangles:
-            colors = (random.randint(1,255), random.randint(1,255), random.randint(1,255))
+            colors = (random.randint(1, 255), random.randint(1, 255),
+                      random.randint(1, 255))
             cursor.pencolor(colors)
             cursor.up()
             cursor.setx(shape.x)
@@ -104,7 +108,8 @@ class Base:
                 cursor.right(90)
 
         for shape in list_squares:
-            colors = (random.randint(1,255), random.randint(1,255), random.randint(1,255))
+            colors = (random.randint(1, 255), random.randint(1, 255),
+                      random.randint(1, 255))
             cursor.pencolor(colors)
             cursor.up()
             cursor.setx(shape.x)
