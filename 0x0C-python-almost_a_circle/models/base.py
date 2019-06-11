@@ -59,9 +59,7 @@ class Base:
         """ check inputs """
         try:
             with open(cls.__name__ + ".json", encoding="utf-8") as j_file:
-                print(j_file)
                 list_file = cls.from_json_string(j_file.read())
-                print(list_file)
                 return [cls.create(**obj) for obj in list_file]
 
         except:
