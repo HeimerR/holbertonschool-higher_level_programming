@@ -19,7 +19,7 @@ class TestSquare(unittest.TestCase):
 
     def test_id_s(self):
         g1 = Square(7)
-        self.assertEqual(g1.id, 111)
+        self.assertEqual(g1.id, 135)
 
     def test_excep(self):
         with self.assertRaises(TypeError):

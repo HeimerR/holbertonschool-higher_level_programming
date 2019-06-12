@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-unittest
-"""
+""" unittest """
 from models.base import Base
 from models.rectangle import Rectangle
 import unittest
@@ -10,6 +8,7 @@ from io import StringIO
 
 
 class TestRectangle(unittest.TestCase):
+    """ test """
 
     def setUp(self):
         self.old_stdout = sys.stdout
@@ -26,8 +25,8 @@ class TestRectangle(unittest.TestCase):
             Rectangle(10, "2")
 
     def test_ids(self):
-        self.assertEqual(self.g1.id, 50)
-        self.assertEqual(self.g2.id, 51)
+        self.assertEqual(self.g1.id, 74)
+        self.assertEqual(self.g2.id, 75)
         self.assertEqual(self.g3.id, 12)
 
     def test_width(self):
@@ -59,21 +58,33 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             r5 = Rectangle(10, 2)
             r5.width = - 10
+            self.g1.width = - 10
+            self.g2.width = - 10
+            self.g3.width = - 10
 
     def test_excep3(self):
         with self.assertRaises(ValueError):
             r5 = Rectangle(10, 2)
             r5.height = - 10
+            self.g1.height = - 10
+            self.g2.height = - 10
+            self.g3.height = - 10
 
     def test_excep4(self):
         with self.assertRaises(ValueError):
             r5 = Rectangle(10, 2)
             r5.x = - 10
+            self.g1.x = - 10
+            self.g2.x = - 10
+            self.g3.x = - 10
 
     def test_excep5(self):
         with self.assertRaises(ValueError):
             r5 = Rectangle(10, 2)
             r5.y = - 10
+            self.g1.y = - 10
+            self.g2.y = - 10
+            self.g3.y = - 10
 
     def test_excep6(self):
         with self.assertRaises(TypeError):
@@ -88,21 +99,33 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r5 = Rectangle(10, 2)
             r5.width = "8"
+            self.g1.width = "8"
+            self.g2.width = "8"
+            self.g3.width = "8"
 
     def test_excep2(self):
         with self.assertRaises(TypeError):
             r5 = Rectangle(10, 2)
             r5.height = "8"
+            self.g1.height = "8"
+            self.g2.height = "8"
+            self.g3.height = "8"
 
     def test_excep2(self):
         with self.assertRaises(TypeError):
             r5 = Rectangle(10, 2)
             r5.x = "8"
+            self.g1.x = "8"
+            self.g2.x = "8"
+            self.g3.x = "8"
 
     def test_excep2(self):
         with self.assertRaises(TypeError):
             r5 = Rectangle(10, 2)
             r5.y = "8"
+            self.g1.y = "8"
+            self.g2.y = "8"
+            self.g3.y = "8"
 
     def test_area2(self):
         r7 = Rectangle(3, 2)
