@@ -16,6 +16,6 @@ if __name__ == "__main__":
             print(result_list[res].get('name'))
         return r.json().get('next')
     next = starwars(search)
-    if next is not None:
+    while next is not None:
         search['page'] = str(int(search['page']) + 1)
         next = starwars(search)
