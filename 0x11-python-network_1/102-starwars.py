@@ -13,7 +13,10 @@ if __name__ == "__main__":
             print("Number of results: {}".format(result_num))
         result_list = r.json().get('results')
         for res in range(0, len(result_list)):
-            print(result_list[res].get('name'))
+            try:
+                print(result_list[res].get('name'))
+            except UnicodeEncodeError:
+                print(result_list[res].get('name').encode("utf-8"))
             for film in result_list[res].get('films'):
                 r2 = requests.get(film)
                 title = r2.json().get('title')
