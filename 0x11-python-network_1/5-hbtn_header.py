@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""  fetches https://intranet.hbtn.io/status  """
+"""  fetches X-Request-Id """
 import requests
 from sys import argv
 
