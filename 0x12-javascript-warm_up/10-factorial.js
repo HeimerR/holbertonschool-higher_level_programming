@@ -5,5 +5,5 @@ function factorial (n) {
   }
   return (factorial(n - 1) * n);
 }
-let n = Number(process.argv[2]);
+const n = Number(process.argv[2]);
 console.log(factorial(n));
