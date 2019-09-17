@@ -4,6 +4,6 @@ if (process.argv[2] === undefined || (process.argv[3] === undefined)) {
 } else {
   process.argv.shift();
   process.argv.shift();
-  process.argv.sort().reverse();
-  console.log(process.argv[1]);
+  const array = [...new Set(process.argv.sort().reverse())];
+  console.log(array[1]);
 }
