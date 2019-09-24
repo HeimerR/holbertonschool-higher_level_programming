@@ -10,7 +10,7 @@ request(url, function (err, response, body) {
   for (const film of result) {
     list = list.concat(film.characters);
   }
-  const uniq = list.filter(x => x === 'https://swapi.co/api/people/18/');
+  const uniq = list.filter(x => x.includes('18'));
   console.log(uniq.length);
 }
 );
