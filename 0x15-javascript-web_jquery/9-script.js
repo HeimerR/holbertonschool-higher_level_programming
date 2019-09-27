@@ -1,11 +1,9 @@
 $(document).ready(function(){
   $.ajax({
-    type: 'POST',
-    url: 'https://fourtonfish.com/hellosalut/',
+    type: 'GET',
+    url: 'https://fourtonfish.com/hellosalut/?lang=fr',
     success: function(data) {
-      $.each(data.results, function(i, film) {
-        $('UL#list_movies').append("<li>" + film.title +"</li>");
-      });
+        $('DIV#hello').append(data.hello);
     }
   });
 });
