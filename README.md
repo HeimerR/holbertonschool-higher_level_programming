@@ -10,4 +10,4 @@ Most of the scripts are executable files. Only run it on your ubuntu machine
 
 ## Authors
 
-* **Heimer Rojas Castellanos** - *Initial work* - [PurpleBooth](https://github.com/heimerr)
+* **Heimer Rojas Castellanos** - *Initial work* - [MainGitHub](https://github.com/heimerr)
