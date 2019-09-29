@@ -1,4 +1,11 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const headerElem = document.querySelector('HEADER');
-  headerElem.style.color = '#FF0000';
+$(document).ready(function () {
+  $('DIV#add_item').click(function () {
+    $('UL.my_list').append('<li>Item</li>');
+  });
+  $('DIV#remove_item').click(function () {
+    $('UL.my_list li:last-child').remove();
+  });
+  $('DIV#clear_list').click(function () {
+    $('UL.my_list').empty('ul');
+  });
 });
