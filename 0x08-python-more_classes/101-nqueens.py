@@ -7,6 +7,9 @@ from sys import argv, exit
 def place(N, row, col, result):
     """ place queens recursively """
     if row == N:
+        print(result)
+        if col != N-1:
+            result = place(N, row-1, col+1, result)
         return result
     while col < N:
         if isvalid(row, col, result):
@@ -14,7 +17,7 @@ def place(N, row, col, result):
             result = place(N, row+1, 0, result)
             break
         col += 1
-    if col == N:
+    if col == N and len(result) != 0:
         r, c = result.pop()
         result = place(N, r, c+1, result)
     return result
@@ -46,5 +49,7 @@ if __name__ == "__main__":
     while col < N-1:
         result = []
         result = place(N, 0, col, result)
-        print(result)
-        col = result[0][1] + 1
+        if result == []:
+            col = N
+        else:
+            col = result[0][1] + 1
