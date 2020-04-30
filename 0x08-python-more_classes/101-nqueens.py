@@ -6,21 +6,18 @@ from sys import argv, exit
 
 def place(N, row, col, result):
     """ place queens recursively """
-    if row == N:
-        print(result)
-        if col != N-1:
-            result = place(N, row-1, col+1, result)
-        return result
     while col < N:
         if isvalid(row, col, result):
             result.append([row, col])
-            result = place(N, row+1, 0, result)
-            break
+            if row == N-1:
+                print(result)
+                result.pop()
+            else:
+                place(N, row+1, 0, result)
         col += 1
-    if col == N and len(result) != 0:
-        r, c = result.pop()
-        result = place(N, r, c+1, result)
-    return result
+    if len(result) > 0:
+        result.pop()
+    return
 
 
 def isvalid(row, col, result):
@@ -45,11 +42,5 @@ if __name__ == "__main__":
     if N < 4:
         print("N must be at least 4")
         exit(1)
-    col = 0
-    while col < N-1:
-        result = []
-        result = place(N, 0, col, result)
-        if result == []:
-            col = N
-        else:
-            col = result[0][1] + 1
+    result = []
+    place(N, 0, 0, result)
